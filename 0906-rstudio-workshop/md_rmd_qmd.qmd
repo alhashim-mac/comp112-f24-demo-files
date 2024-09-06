@@ -1,0 +1,34 @@
+---
+title: "md vs rmd vs qmd"
+format: html
+---
+
+## Markdown
+
+Simple language to **quickly** format documents _but_ can't run code
+
+```
+3 + 4
+```
+
+## Rmarkdown
+
+Markdown + ability to run code written in R
+
+```{r}
+3 + 4
+```
+
+
+## Quarto
+
+RMarkdown + ability to code written in R, Python, Javascript, and Julia + more features
+
+```{{python}}
+print(3)
+```
+
+
+## References
+
+- [Quarto sounds similar to R Markdown. What is the difference and why create a new project?](https://quarto.org/docs/faq/rmarkdown.html#quarto-sounds-similar-to-r-markdown.-what-is-the-difference-and-why-create-a-new-project)
