@@ -1,0 +1,9 @@
+# Demo
+
+This is a  demo Quarto document with some R code chunk that its results will be woven into the HTML document that will be produced when clicking the **Render** button.  Notice that there is no Build pane here because this is *not a Quarto Book* which you will have for your portfolio website and your homework website.  Your portfolio website will be **public** while your homework website will be **private**.
+
+```{r}
+100 + 10
+```
+
+
