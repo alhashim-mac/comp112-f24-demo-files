@@ -1,0 +1,44 @@
+---
+title: "Homework 1"
+---
+
+Homework 1 can be found [here](https://hashcx.github.io/mac-comp112website-f24/activities/02-rstudio-workshop.html#homework-1)
+
+## Exercise 6: Your turn
+
+URL of World Cup football/soccer data: 
+
+``` markdown
+https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-11-29/worldcups.csv
+```
+
+::: {.callout-important}
+To run code, you must place it inside an R code chunk.  Inserting a chunk can be done in different ways as follows, order from slowest to fastest:
+
+1. Type it yourself manually
+2. Code menu --> Insert Chunk
+3. Use the keyboard shortcut `Alt+Ctrl+I` (Windows) or `Cmd+Option+I` (OS)
+:::
+
+```{r}
+# Import and name the dataset (you pick a name!)
+
+
+# Print the first 6 rows of the dataset
+
+
+# How many years of data do we have? And how many measurements do we have on each year?
+
+
+# Get a list of all variable names in the dataset
+
+
+# Display the class and other information for each variable in the dataset
+
+
+```
+
+
+## Exercise 7: Brainstorm
+
+Write out 3 questions about the World Cup that we might answer using these data
