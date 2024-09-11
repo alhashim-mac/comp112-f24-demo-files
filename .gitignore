@@ -47,7 +47,7 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
-*/md_rmd_qmd_files
+*/*_files
 *.html
 *.log
 *.tex
