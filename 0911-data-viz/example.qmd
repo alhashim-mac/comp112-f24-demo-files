@@ -1,0 +1,35 @@
+---
+title: "Exmaple"
+---
+
+```{r}
+library(ggplot2)
+```
+
+
+## Datset A
+```{r}
+dataset_a <- read.csv("dataset_a.csv")
+dataset_a
+```
+
+```{r}
+ggplot(data = dataset_a, mapping = aes(x = x)) + 
+  geom_bar()
+```
+
+
+## Dataset B
+
+```{r}
+dataset_b <- read.csv("dataset_b.csv")
+dataset_b
+```
+
+
+
+```{r}
+ggplot(data = dataset_b, mapping = aes(x = x)) +
+  geom_density()
+```
+
