@@ -1,0 +1,47 @@
+## Load Packages
+```{r}
+library(ggplot2)
+```
+
+
+
+## Dataset A
+
+Read
+```{r}
+ds_a <- read.csv("dataset_a.csv")
+ds_a
+```
+
+Visualize
+```{r}
+
+```
+
+
+## Dataset B
+
+Read
+```{r}
+ds_b <- read.csv("dataset_b.csv")
+ds_b
+```
+
+Visualize
+```{r}
+
+```
+
+
+## Dataset C
+
+Read
+```{r}
+ds_c <- read.csv("dataset_c.csv")
+ds_c
+```
+
+Visualize
+```{r}
+
+```
