@@ -15,7 +15,8 @@ ds_a
 
 Visualize
 ```{r}
-
+ggplot(data = ds_a, mapping = aes(x = code, fill = color)) +
+  geom_bar()
 ```
 
 
@@ -29,7 +30,8 @@ ds_b
 
 Visualize
 ```{r}
-
+ggplot(data = ds_b, mapping = aes(x = src, y = msur)) +
+  geom_point()
 ```
 
 
@@ -43,5 +45,11 @@ ds_c
 
 Visualize
 ```{r}
+ggplot(data = ds_c, mapping = aes(x = msur, fill = color)) +
+  geom_density()
+```
 
+```{r}
+ggplot(data = ds_c, mapping = aes(x = color, y = msur)) +
+  geom_boxplot()
 ```
