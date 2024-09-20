@@ -1,0 +1,19 @@
+```{r}
+library(googlesheets4)
+library(ggplot2)
+```
+
+```{r}
+ds <- read_sheet("https://docs.google.com/spreadsheets/d/1M2cK2znpZxWBPbAxSS5KTIXBrLUbNblzIHkDXOQ4SEw/")
+ds
+```
+
+```{r}
+ggplot(data = ds, mapping = aes(x = choc_to_success, y = class)) +
+  geom_boxplot(color = "gray", size = .5) +
+  geom_jitter(alpha = 0.5, color = "orange", size = 3) +
+  labs(title = "How much do you think *chocolate* will\ncontributes to your success in this class?",
+       x = "", y = "") +
+  theme_minimal()
+```
+
