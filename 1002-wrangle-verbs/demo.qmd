@@ -18,15 +18,42 @@ head(elections)
 ## Select
 ```{r}
 elections |> 
+select(state_abbr, county_fips)
 ```
 
 
+## Mutate
+```{r}
+elections |> 
+  mutate(total_votes_20 = total_votes_20/1000)
+```
 
 
+## Arrange
+```{r}
+elections |> 
+  arrange(desc(county_name))
+```
+
+## Summarize
+```{r}
+elections |> 
+  summarize(mean(county_fips))
+```
+
+## Group By
+```{r}
+elections |> 
+  group_by(historical) |> 
+  summarise(n())
+```
 
 
-
-
+## Filer
+```{r}
+elections |> 
+  filter(historical == "red")
+```
 
 
 
