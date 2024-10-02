@@ -1,0 +1,44 @@
+---
+title: "Wrangle Verbs
+---
+
+## Load Packages
+```{r}
+library(tidyverse)
+```
+
+## Load Data
+```{r}
+elections <- read.csv("https://mac-stat.github.io/data/election_2020_county.csv")
+head(elections)
+```
+
+
+
+## Select
+```{r}
+elections |> 
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
