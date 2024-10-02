@@ -1,0 +1,61 @@
+---
+Title: "Data Wrangling"
+---
+
+## Load Packages
+```{r}
+library(tidyverse)
+```
+
+
+## Load Data
+
+Election Data by County
+```{r}
+elections <- read.csv("https://mac-stat.github.io/data/election_2020_county.csv")
+head(elections)
+```
+
+## Select
+```{r}
+elections |> 
+  select(state_abbr, historical)
+```
+
+## Mutate
+```{r}
+elections |> 
+  mutate(total_votes_20 = total_votes_20/1000)
+```
+
+## Filter
+```{r}
+elections |> 
+  filter(state_abbr == "MN")
+```
+
+## Arrange
+```{r}
+elections |> 
+  arrange(desc(total_votes_20))
+```
+
+## Summarize
+```{r}
+elections |> 
+  summarize(mean(total_votes_20))
+```
+
+## Group By
+```{r}
+elections |> 
+  group_by(state_abbr)
+```
+
+## Group By + Summarize
+```{r}
+elections |> 
+  group_by(state_abbr) |> 
+  summarise(n())
+```
+
