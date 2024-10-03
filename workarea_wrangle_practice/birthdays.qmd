@@ -1,0 +1,64 @@
+---
+---
+
+## Load Packages
+```{r}
+library(tidyverse)
+library(mosaic)
+```
+
+## Read Data
+```{r}
+head(Birthdays)
+```
+
+## Exercise 5
+```{r}
+# How many days of data do we have for each state?
+Birthdays |> 
+  count(state)
+```
+```{r}
+today <- as.Date(today())
+```
+
+
+```{r}
+# How many total births were there in this time period?
+Birthdays |> 
+  filter(month == month(today), day == day(today)) |> 
+  summarise(sum(births))
+```
+
+```{r}
+# How many total births were there per state in this time period, sorted from low to high?
+Birthdays |> 
+  filter(month == month(today), day == day(today)) |> 
+  summarise(tota_births = sum(births), .by = state) |> 
+  arrange(desc(tota_births))
+```
+
+## Exercise 6
+```{r}
+dialy_births <- Birthdays |> 
+  summarise(total_birhts_per_day = sum(births), .by = wday)
+head(dialy_births)
+```
+
+```{r}
+dialy_births |> 
+  ggplot(mapping = aes(x = wday, y = total_birhts_per_day)) +
+  geom_col()
+```
+
+
+```{r}
+Birthdays |> 
+  mutate(month_txt = month(date, label = TRUE)) |> 
+  group_by(year, month_txt) |> 
+  summarise(total_births = sum(births)) |> 
+  ggplot(mapping = aes(x = total_births)) +
+  facet_wrap(~month_txt) +
+  geom_density()
+```
+
