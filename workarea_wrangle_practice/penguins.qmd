@@ -1,0 +1,224 @@
+---
+title: "Wrangle Practice: Penguins Dataset"
+---
+
+## Load Packages
+```{r}
+library(tidyverse)
+```
+
+
+## Read Data
+```{r}
+penguins <- read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-07-28/penguins.csv")
+```
+
+## Inspect Data
+```{r}
+glimpse(penguins)
+```
+## Body Mass vs Bill Length
+
+```{r}
+penguins |> 
+  filter(!is.na(sex)) |> 
+  ggplot(mapping = aes(x = bill_length_mm, y = body_mass_g, color = species)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  facet_wrap(~sex)
+```
+
+
+## Wrangling 
+```{r}
+# Get data on only Adelie penguins that weigh more than 4700g
+penguins |> 
+  filter(species == "Adelie", body_mass_g > 4700) |> 
+  head()
+```
+
+```{r}
+# Get data on penguin body mass only
+# Show just the first 6 rows
+penguins |> 
+  select(body_mass_g) |> 
+  head()
+```
+
+```{r}
+# Sort the penguins from smallest to largest body mass
+# Show just the first 6 rows
+penguins |> 
+  arrange(desc(body_mass_g)) |> 
+  head()
+```
+
+```{r}
+# Calculate the average body mass across all penguins
+# Note: na.rm = TRUE removes the NAs from the calculation
+penguins |> 
+  summarise(mean_body_mass_g = mean(body_mass_g, na.rm = TRUE))
+```
+
+```{r}
+# Calculate the average body mass by species
+penguins |> 
+  group_by(species) |> 
+  summarise(mean_body_mass_g = mean(body_mass_g, na.rm = TRUE))
+```
+
+```{r}
+# Create a new column that records body mass in kilograms, not grams
+# NOTE: there are 1000 g in 1 kg
+# Show just the first 6 rows
+penguins |> 
+  mutate(body_mass_kg = body_mass_g/1000) |> 
+  head()
+```
+
+## Wrangle --> Viz
+```{r}
+penguins |> 
+  ggplot(mapping = aes(x = species)) +
+  geom_bar()
+```
+
+```{r}
+penguins |> 
+  group_by(species) |> 
+  summarise(n())
+```
+
+
+```{r}
+penguins |> 
+  count(species)
+```
+
+## Multiple Wrangle Verbs
+
+```{r}
+# Sort Gentoo penguins from biggest to smallest with respect to their 
+# bill length in cm (there are 10 mm in a cm)
+penguins |> 
+  mutate(bill_length_cm = bill_length_mm * 10) |> 
+  arrange(desc(bill_length_cm))
+```
+
+```{r}
+# Sort the species from smallest to biggest with respect to their 
+# average bill length in cm
+penguins |> 
+  group_by(species) |> 
+  mutate(bill_length_cm = bill_length_mm*10) |> 
+  summarise(avg_bill_length_cm = mean(bill_length_cm, na.rm = TRUE))
+```
+
+## Exercise 1: Part a
+```{r}
+# Create a dataset with just Adelie and Chinstrap using %in%
+# Pipe this into `count(species)` to confirm that you only have these 2 species
+penguins |>
+  filter(species %in% c("Adelie", "Chinstrap")) |>
+  count(species)
+```
+
+```{r}
+# Create a dataset with just Adelie and Chinstrap using !=
+# Pipe this into `count(species)` to confirm that you only have these 2 species
+penguins |>
+  filter(species != "Gentoo") |>
+  count(species)
+```
+
+## Excersise 1: Part B
+
+```{r}
+penguins |> 
+  summarise(sum(is.na(body_mass_g)))
+```
+
+## Exercise 2
+
+```{r}
+# Use a shortcut to keep everything but the year and island variables
+penguins |> 
+  select(-year, -island) |> 
+  glimpse()
+```
+
+```{r}
+# Use a shortcut to keep only species and the penguin characteristics measured in mm
+penguins |> 
+  select(species, ends_with("mm")) |> 
+  glimpse()
+```
+
+```{r}
+# Use a shortcut to keep only species and bill-related measurements
+penguins |> 
+  select(species, starts_with("bill")) |> 
+  glimpse()
+```
+
+```{r}
+# Use a shortcut to keep only species and the length-related characteristics
+penguins |> 
+  select(species, contains("length")) |> 
+  glimpse()
+```
+
+## Exercise 3
+```{r}
+# Change this code to sort the penguins by species, and then island name
+# NOTE: The first row should be an Adelie penguin living on Biscoe island
+penguins |> 
+  arrange(species, island)
+```
+
+```{r}
+# Change this code to count the number of male/female penguins observed for each species
+penguins |> 
+  count(species, sex)
+```
+
+```{r}
+# Change this code to calculate the average body mass by species and sex
+penguins |> 
+  group_by(species, sex) |> 
+  summarize(mean = mean(body_mass_g, na.rm = TRUE))
+```
+
+## Exercise 4
+
+```{r}
+# Today's date
+as.Date(today())
+```
+
+```{r}
+today <- as.Date(today())
+
+class(today)
+```
+
+```{r}
+year(today)
+```
+
+```{r}
+month(today)
+```
+
+```{r}
+month(today, label = TRUE, abbr = FALSE)
+```
+
+```{r}
+week(today)
+```
+
+```{r}
+mday(today)
+```
+
