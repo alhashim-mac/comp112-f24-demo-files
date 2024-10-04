@@ -1,0 +1,34 @@
+---
+title: "Wrangling Practice and Dates"
+---
+
+## Load Packages
+```{r}
+library(tidyverse)
+```
+
+
+## Load Data
+
+Election Data by County
+```{r}
+penguins <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-07-28/penguins.csv')
+head(penguins)
+```
+
+
+## Missing Values in Each Column
+```{r}
+penguins |> 
+  is.na() |> 
+  colSums() |> 
+  table()
+```
+
+## Missing Values in Each Row
+```{r}
+penguins |> 
+  is.na() |> 
+  rowSums() |>
+  table()
+```
