@@ -1,0 +1,30 @@
+## Question
+How do you center a title for a ggplot graph?
+
+## Load Packages
+```{r}
+library(ggplot2)
+```
+
+## Base Plot
+```{r}
+g <- ggplot() +
+  labs(title = "Test Title")
+```
+
+
+
+## Default Alignment
+```{r}
+g
+```
+
+## Center Alignment using theme
+```{r}
+g +
+  theme(plot.title = element_text(hjust = .5))
+```
+`theme` layer: customizes the non-data components of the plot, eg, title and legends
+`plot.title` argument: customizes the title component of the plot
+`element_text` function: specifies how a text is drawn, eg, color, horizontal alignment, and vertical alignment.
+
