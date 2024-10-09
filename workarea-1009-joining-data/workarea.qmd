@@ -1,0 +1,128 @@
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+students_1 <- data.frame(
+  student = c("A", "B", "C"),
+  class = c("STAT 101", "GEOL 101", "ANTH 101")
+)
+
+# Check it out
+students_1
+```
+
+```{r}
+enrollments_1 <- data.frame(
+  class = c("STAT 101", "ART 101", "GEOL 101"),
+  enrollment = c(18, 17, 24)
+)
+
+# Check it out
+enrollments_1
+```
+
+## Left Join
+```{r}
+students_1 |> 
+  left_join(enrollments_1)
+```
+
+```{r}
+enrollments_1 |>
+  left_join(students_1)
+```
+
+## Inner Join
+```{r}
+students_1 |>
+  inner_join(enrollments_1)
+```
+
+## Full Join
+```{r}
+students_1 |>
+  full_join(enrollments_1)
+```
+
+## Semi Join
+```{r}
+students_1 |>
+  semi_join(enrollments_1)
+```
+
+## Anti Join
+```{r}
+students_1 |>
+  anti_join(enrollments_1)
+```
+
+## Ex 3
+```{r}
+# Get rid of some duplicate rows!
+grades <- read.csv("https://mac-stat.github.io/data/grades.csv") |> 
+  distinct(sid, sessionID, .keep_all = TRUE)
+head(grades)
+```
+
+```{r}
+courses <- read.csv("https://mac-stat.github.io/data/courses.csv")
+head(courses)
+```
+
+```{r}
+courses |>
+  count(sessionID) |>
+  filter(n > 1)
+```
+
+```{r}
+courses |> 
+  filter(sessionID == "session2047")
+```
+
+```{r}
+courses_combined <- courses |>
+  group_by(sessionID) |>
+  summarise(enroll = sum(enroll))
+
+courses_combined
+```
+
+```{r}
+courses_combined |> 
+  summarise(median(enroll))
+```
+
+```{r}
+student_class_size <- grades |> 
+  left_join(courses_combined) |> 
+  group_by(sid) |> 
+  summarise(med_class = median(enroll))
+
+student_class_size
+```
+
+```{r}
+student_class_size |> 
+  ggplot(mapping = aes(x = med_class)) +
+  geom_boxplot()
+```
+
+```{r}
+grades |> 
+  filter(sessionID == "session1986")
+```
+
+```{r}
+dept_E <- courses |> 
+  filter(dept == "E")
+dept_E
+```
+
+```{r}
+grades |> 
+  semi_join(dept_E)
+```
+
