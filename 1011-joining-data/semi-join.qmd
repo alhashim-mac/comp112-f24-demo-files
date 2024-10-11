@@ -1,0 +1,37 @@
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+price <- read.csv("price.csv")
+price
+```
+
+```{r}
+source <- read.csv("source.csv")
+source
+```
+
+```{r}
+price |> 
+  semi_join(source, by = c("fruit" = "fruit"))
+```
+
+```{r}
+source |> 
+  semi_join(price, by = c("fruit" = "fruit"))
+```
+
+
+
+```{r}
+price |> 
+  inner_join(source, by = c("fruit" = "fruit"))
+```
+
+```{r}
+source |> 
+  inner_join(price, by = c("fruit" = "fruit"))
+```
+
