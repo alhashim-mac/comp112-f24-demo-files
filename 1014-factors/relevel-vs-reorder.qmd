@@ -1,0 +1,52 @@
+---
+title: "Relevel vs. Reorder"
+---
+
+Load Packages
+```{r}
+library(tidyverse)
+```
+
+Load Dataset
+```{r}
+PlantGrowth
+```
+
+Explore dataset
+```{r}
+PlantGrowth |> 
+  group_by(group) |> 
+  summarise(n = n(), min = min(weight), mean = mean(weight), max = max(weight))
+```
+
+
+Plot boxplot for each group
+```{r}
+PlantGrowth |> 
+  ggplot(mapping = aes(x = group, y = weight)) +
+  geom_boxplot()
+```
+
+Relevel--reorder manually
+```{r}
+PlantGrowth |> 
+  ggplot(mapping = aes(x = fct_relevel(group, c("trt1", "trt2", "ctrl")),
+                       y = weight)) +
+  geom_boxplot()
+```
+
+Reorder--reorder based on weight in ascending order
+```{r}
+PlantGrowth |> 
+  ggplot(mapping = aes(x = fct_reorder(group, weight, .fun = "mean"),
+                       y = weight)) +
+  geom_boxplot()
+```
+
+Reorder--reorder based on weight in descending order
+```{r}
+PlantGrowth |> 
+  ggplot(mapping = aes(x = fct_reorder(group, weight, .fun = "mean", .desc = TRUE),
+                       y = weight)) +
+  geom_boxplot()
+```

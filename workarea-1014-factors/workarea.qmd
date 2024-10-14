@@ -1,0 +1,123 @@
+```{r}
+f <- factor(c("a", "c", "b", "a"),
+            levels = c("a", "b", "c"))
+f
+```
+
+Return levels
+```{r}
+levels(f)
+```
+
+Set levels
+```{r}
+levels(f) <- c("a", "b", "c", "d")
+f
+```
+
+Character vector
+```{r}
+f <- c("a", "d", "b", "c", "a", "a", "b")
+f
+```
+
+```{r}
+class(f)
+```
+
+```{r}
+unclass(f)
+```
+
+
+Change to factor
+```{r}
+f <- factor(f)
+f
+```
+
+Set levels
+```{r}
+levels(f) <- c("a", "d", "b", "c")
+f
+```
+Structure
+```{r}
+class(f)
+```
+
+Underlying structure
+```{r}
+unclass(f)
+```
+```{r}
+library(ggplot2)
+```
+
+
+Count # of values with each level
+```{r}
+fct_count(f)
+```
+
+Check for levels
+```{r}
+fct_match(f, "a")
+```
+
+Find unique value
+```{r}
+f
+```
+
+```{r}
+fct_unique(f)
+```
+
+Change order
+```{r}
+fct_relevel(f, c("c"))
+```
+
+Reorder based on relationship with another variable
+
+```{r}
+PlantGrowth |> 
+  ggplot(mapping = aes(x = group, y = weight)) +
+  geom_boxplot()
+```
+
+```{r}
+PlantGrowth |> 
+  ggplot(mapping = aes(x = fct_relevel(group, c("trt1", "trt2", "ctrl")), y = weight)) +
+  geom_boxplot()
+```
+
+```{r}
+PlantGrowth |> 
+  ggplot(mapping = aes(x = fct_reorder(group, weight), y = weight)) +
+  geom_boxplot()
+```
+
+
+Reorder based on the final values when plotted with 2 other variables
+
+```{r}
+diamonds |> 
+  ggplot(mapping = aes(x = carat, 
+                       y = price, 
+                       colour = color
+                       )) + 
+  geom_smooth()
+```
+
+
+```{r}
+diamonds |> 
+  ggplot(mapping = aes(x = carat, 
+                       y = price, 
+                       colour = fct_reorder2(color, carat, price)
+                       )) + 
+  geom_smooth()
+```
+
