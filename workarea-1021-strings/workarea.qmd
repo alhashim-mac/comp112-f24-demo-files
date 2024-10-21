@@ -57,6 +57,18 @@ classes |>
   separate(instructor, c("first", "last"), sep = " ")
 ```
 
+
+```{r}
+classes |> 
+  separate(instructor, c("first", "last"))
+```
+
+```{r}
+classes |> 
+  separate(sem, c("semester", "year"), sep = "(?<=[SP|FA])(?=2)", remove = FALSE)
+```
+
+
 ## Ex 1
 ```{r}
 courses <- read.csv("https://mac-stat.github.io/data/registrar.csv")
@@ -64,6 +76,14 @@ courses <- read.csv("https://mac-stat.github.io/data/registrar.csv")
 # Check it out
 head(courses)
 ```
+
+```{r}
+# Construct a table that indicates the number of classes offered in each day/time slot
+# Print only the 6 most popular time slots
+courses |> 
+  count(days, time, sort = TRUE)
+```
+
 
 ```{r}
 courses |> 
