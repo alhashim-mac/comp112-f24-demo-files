@@ -1,0 +1,59 @@
+Load Packages
+```{r}
+library(tidyverse)
+```
+
+# Read Data
+```{r}
+data1 <- read.csv("data1.csv")
+data1
+```
+
+```{r}
+data2 <- read.csv("data2.csv")
+data2
+```
+
+
+
+# change case
+```{r}
+data1 |> 
+  mutate(se = str_to_lower(se))
+```
+
+# replace
+```{r}
+data1 |> 
+  mutate(se = str_replace(se, "R", "$"))
+```
+
+
+# part
+```{r}
+data1 |> 
+  mutate(se = str_sub(se, 1, 2))
+```
+
+
+# length
+```{r}
+data1 |> 
+  mutate(len = str_length(se))
+```
+
+
+# detect
+```{r}
+data1 |> 
+  mutate(there = str_detect(se, "I"))
+```
+
+
+# separate
+```{r}
+data2 |> 
+  separate(se, c("p1", "p2"), sep = " ")
+```
+
+
