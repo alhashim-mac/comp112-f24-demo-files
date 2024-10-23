@@ -9,11 +9,6 @@ data1 <- read.csv("data1.csv")
 data1
 ```
 
-```{r}
-data2 <- read.csv("data2.csv")
-data2
-```
-
 
 
 # change case
@@ -52,8 +47,24 @@ data1 |>
 
 # separate
 ```{r}
+data2 <- read.csv("data2.csv")
+data2
+```
+
+```{r}
 data2 |> 
   separate(se, c("p1", "p2"), sep = " ")
 ```
 
+
+# seperate, default
+```{r}
+data3 <- read.csv("data3.csv")
+data3
+```
+
+```{r}
+data3 |> 
+  separate(se, c("p1", "p2"), sep = "")
+```
 
